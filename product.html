@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-wrapper">
+  <header>
+        <div class="logo-bar">
+            <img src="image/header.png" alt="header"/>
+        </div>
+  </header>
+
+  <main class="product-page">
+    <a href="index.html" class="back-link">Kembali</a>
+    <h2>PRODUK TERBAIK</h2>
+    <p class="subtext">Upgrade gear-mu, upgrade skill-mu!</p>
+
+    <div class="product-container">
+      <div class="main-image" id="mainImage"></div>
+      <div class="product-description">
+        <h2 id="productName">Nama Barang</h2>
+        <p id="productDesc">Deskripsi barang</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
+
+    const products = {
+      "gamepad": {
+        name: "Gamepad Wireless",
+        desc: "Gamepad ini dirancang dengan koneksi nirkabel yang stabil, memungkinkan kamu bermain tanpa terganggu kabel yang mengganggu. Dilengkapi dengan grip yang nyaman dan ergonomis, gamepad ini cocok untuk sesi bermain panjang tanpa membuat tangan lelah. Respons tombol yang cepat dan presisi memberikan pengalaman gaming yang lebih seru dan kompetitif. Cocok digunakan pada berbagai perangkat seperti PC, konsol, atau smartphone yang mendukung koneksi Bluetooth.",
+        mainImg: "image/gamepad.jpg",
+        thumbs: ["image/gamepad.jpg"]
+      },
+      "headset-ubl": {
+        name: "Headset UBL Gaming",
+        desc: "Headset ini menghadirkan suara surround yang imersif, membuat pengalaman bermain game atau menonton film terasa lebih nyata. Dilengkapi dengan bass yang kuat dan dalam, setiap dentuman terasa lebih hidup dan menggetarkan. Desainnya yang nyaman dengan bantalan empuk membuatnya ideal digunakan dalam waktu lama. Cocok untuk gamer, pecinta musik, maupun kebutuhan multimedia sehari-hari.",
+        mainImg: "image/headset ubl.jpg",
+        thumbs: ["image/headset ubl.jpg"]
+      },
+      "kursi-gaming": {
+        name: "Kursi Gaming Pro",
+        desc: "Kursi ini dirancang secara ergonomis untuk memberikan dukungan maksimal selama bermain game atau bekerja. Dengan sandaran punggung yang mengikuti bentuk tubuh, kursi ini membantu menjaga postur tetap ideal. Bahan empuk dan breathable membuat pengguna tetap nyaman meskipun duduk dalam waktu lama. Dilengkapi dengan fitur penyesuaian tinggi dan sudut sandaran, kursi ini cocok untuk segala kebutuhan pengguna.",
+        mainImg: "image/Kursi gaming.jpg",
+        thumbs: ["image/Kursi gaming.jpg"]
+      },
+      "mouse-logitech": {
+        name: "Mouse Logitech G",
+        desc: "Mouse ini memiliki tingkat responsivitas tinggi yang dirancang khusus untuk kebutuhan para gamer. Dilengkapi dengan pengaturan DPI yang dapat disesuaikan, kamu bisa menikmati akurasi dan kecepatan sesuai gaya bermainmu. Desain ergonomisnya membuat tangan tetap nyaman meskipun digunakan dalam sesi permainan yang intens. Cocok untuk berbagai genre game, dari FPS hingga MOBA.",
+        mainImg: "image/Mouse Logitech.jpg",
+        thumbs: ["image/Mouse Logitech.jpg"]
+      },
+      "monitor-lg": {
+        name: "Monitor LG 27 inci",
+        desc: "Monitor ini menawarkan resolusi tinggi yang menghasilkan gambar tajam dan detail memukau. Dengan refresh rate cepat, setiap gerakan di layar terasa lebih mulus dan responsif, ideal untuk gaming maupun editing video. Teknologi layarnya juga mendukung warna yang akurat dan kontras yang dalam. Desain bezel tipis menambah kesan modern dan memperluas pengalaman visual pengguna.",
+        mainImg: "image/monitor LG 27.jpg",
+        thumbs: ["image/monitor LG 27.jpg"]
+      },
+      "mousepad": {
+        name: "Mousepad XXL",
+        desc: "Permukaan mousepad ini dirancang halus untuk memastikan pergerakan mouse yang cepat dan akurat. Dilengkapi dengan lapisan anti-slip di bagian bawah, mousepad tetap stabil di tempat selama penggunaan intens. Material berkualitas tinggi memberikan daya tahan serta kenyamanan maksimal. Cocok untuk gamer dan profesional yang membutuhkan kontrol presisi setiap saat.",
+        mainImg: "image/mousepad.jpg",
+        thumbs: ["image/mousepad.jpg"]
+      },
+      "mouse-gaming": {
+        name: "Mouse Gaming RGB",
+        desc: "Mouse gaming ini dilengkapi pencahayaan RGB yang dapat disesuaikan, menambah estetika setup gaming kamu. Sensor presisinya memberikan akurasi tinggi untuk setiap gerakan, ideal untuk permainan yang membutuhkan respons cepat. Desain ergonomisnya memastikan kenyamanan selama sesi bermain panjang. Tersedia juga tombol tambahan yang dapat diprogram sesuai kebutuhan gameplay kamu.",
+        mainImg: "image/mouse gaming.jpg",
+        thumbs: ["image/mouse gaming.jpg"]
+      },
+      "headset": {
+        name: "Headset Gaming Stereo",
+        desc: "Headset ini menyajikan suara jernih yang mendetail, cocok untuk gaming, streaming, maupun panggilan suara. Mikrofon dengan teknologi noise-canceling mampu meredam suara bising di sekitar, memastikan komunikasi tetap jelas dan fokus. Desainnya yang ringan dan nyaman memungkinkan pemakaian dalam waktu lama tanpa rasa lelah. Cocok digunakan di berbagai perangkat seperti PC, laptop, dan konsol gaming.",
+        mainImg: "image/headset.jpg",
+        thumbs: ["image/headset.jpg"]
+      }
+    };
+
+    const data = products[productId];
+
+    if (data) {
+      document.getElementById("productName").textContent = data.name;
+      document.getElementById("productDesc").textContent = data.desc;
+      document.getElementById("mainImage").innerHTML = `<img src="${data.mainImg}" alt="${data.name}">`;
+      document.getElementById("thumbnailRow").innerHTML = data.thumbs.map(img => `<div class="thumbnail"><img src="${img}" alt="thumbnail"></div>`).join("");
+    } else {
+      document.getElementById("productName").textContent = "Produk tidak ditemukan";
+    }
+  </script>
+
+  <footer>
+    <p>Website ini hanya memberikan informasi dan link pembelian kepada store yang recommended !!</p>
+  </footer>
+  </div>
+</body>
+</html>
